@@ -12,8 +12,9 @@ cp -r templates/skill-template skills/<skill-name>
 
 2. 保证目录名与 `SKILL.md` 中的 `name` 一致
 3. 写好 `description`（包含做什么 + 何时用 + 触发关键词）
-4. 更新根目录 `catalog.yaml`
-5. 如有脚本，文档化依赖与用法；避免绑定单一 Agent 专有能力
+4. 按 [docs/local-dev.md](docs/local-dev.md) 本地挂载并测试通过
+5. 更新根目录 `catalog.yaml`
+6. 如有脚本，文档化依赖与用法；避免绑定单一 Agent 专有能力
 
 ## 命名约定
 
@@ -27,8 +28,8 @@ cp -r templates/skill-template skills/<skill-name>
 - [ ] `name` 与目录名一致
 - [ ] `description` 具体，含触发场景
 - [ ] `SKILL.md` 主体简洁（建议 < 500 行）
-- [ ] 参考文件从 `SKILL.md` 一层链接
-- [ ] 路径使用正斜杠（`scripts/foo.py`）
+- [ ] 参考文件从 `SKILL.md` 一层链接（不经过 `A → B → C`）
+- [ ] 路径相对 skill 根目录，使用正斜杠（`scripts/foo.py`）
 - [ ] 不包含密钥、凭证或恶意代码
 
 ## 提交建议

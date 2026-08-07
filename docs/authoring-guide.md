@@ -2,6 +2,13 @@
 
 面向本仓库的通用编写约定，兼容 [Agent Skills 规范](https://agentskills.io/specification)。
 
+## 设计原则
+
+- **渐进披露**：启动时只加载 `name` + `description`；命中后再读 `SKILL.md`；`scripts/` / `references/` / `assets/` 按需加载
+- **精简主文件**：`SKILL.md` 建议 < 500 行，细节放到 `references/`
+- **相对路径、一层引用**：资源用相对 skill 根目录的路径（如 `references/api.md`）；由 `SKILL.md` **直接**链接到该文件，不要 `SKILL.md → A.md → B.md` 层层跳转
+- **工具无关**：不写某家产品私有约定，优先遵循 [agentskills.io/specification](https://agentskills.io/specification)
+
 ## 目录约定
 
 ```text
@@ -16,14 +23,18 @@ skills/<skill-name>/
 
 ## Frontmatter
 
-| 字段 | 必需 | 说明 |
-|------|------|------|
-| `name` | 是 | 小写、数字、连字符；≤64 |
-| `description` | 是 | 做什么 + 何时用；≤1024 |
-| `license` | 否 | 如 `MIT` |
-| `compatibility` | 否 | 环境/依赖要求；多数 skill 不需要 |
-| `metadata` | 否 | 自定义键值，如 `author`、`version` |
-| `allowed-tools` | 否 | 实验性：预批准工具列表 |
+
+| 字段              | 必需  | 说明                         |
+| --------------- | --- | -------------------------- |
+| `name`          | 是   | 小写、数字、连字符；≤64              |
+| `description`   | 是   | 做什么 + 何时用；≤1024            |
+| `license`       | 否   | 如 `MIT`                    |
+| `compatibility` | 否   | 环境/依赖要求；多数 skill 不需要       |
+| `metadata`      | 否   | 自定义键值，如 `author`、`version` |
+| `allowed-tools` | 否   | 实验性：预批准工具列表                |
+
+
+
 
 ### description 写法
 
@@ -37,12 +48,16 @@ description: 从 PDF 提取文本与表格、填写表单、合并文档。在�
 description: 帮助处理 PDF。
 ```
 
+
+
 ## 正文结构建议
 
 1. **Quick start**：最短可执行路径
 2. **Workflow / Checklist**：多步骤任务拆开
 3. **Examples**：输入 → 期望输出
 4. **Additional resources**：链到 `references/` 与 `scripts/`
+
+
 
 ## 渐进披露
 
@@ -64,15 +79,36 @@ description: 帮助处理 PDF。
 ```bash
 python scripts/extract.py input.pdf > fields.json
 ```
+
 ```
+
+```
+
+
 
 ## 反模式
 
 - 模糊命名：`helper`、`utils`、`tools`
 - 塞太多可选方案却不给默认路径
-- Windows 反斜杠路径：`scripts\foo.py`
+- Windows 反斜杠路径：`scripts\foo.py`（应写 `scripts/foo.py`）
 - 把易过期的时间线写进主流程（可放在「旧方案」折叠段）
-- 深层引用链：`A → B → C`
+- 深层引用链：`SKILL.md → A.md → B.md → C.md`（应改成 `SKILL.md` 分别直链 A/B/C）
+
+
+
+## 本地测试
+
+写完或改完后，把 skill 挂到本机 Agent 上验证（推荐软链接，改仓库文件即生效）。完整步骤见 [local-dev.md](local-dev.md)。
+
+最短路径（Cursor 全局软链）：
+
+```bash
+mkdir -p ~/.cursor/skills
+ln -sfn "$(pwd)/skills/my-skill" ~/.cursor/skills/my-skill
+# 然后新开 Agent 对话，用会命中 description 的话测试
+```
+
+
 
 ## 校验
 
@@ -81,3 +117,4 @@ python scripts/extract.py input.pdf > fields.json
 ```bash
 skills-ref validate ./skills/my-skill
 ```
+

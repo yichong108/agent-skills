@@ -2,8 +2,6 @@
 
 跨 Agent 通用的 Skills 仓库，遵循 [Agent Skills](https://agentskills.io) 开放规范。
 
-
-
 ## 安装
 
 完整说明见 **[docs/install.md](docs/install.md)**。
@@ -21,8 +19,6 @@ npx skills add yichong108/agent-skills --skill hello-world -a cursor
 npx skills add yichong108/agent-skills --skill hello-world -a cursor -g
 ```
 
-
-
 ## 快速开始（编写新 skill）
 
 1. 复制模板：
@@ -31,33 +27,25 @@ npx skills add yichong108/agent-skills --skill hello-world -a cursor -g
 cp -r templates/skill-template skills/my-skill
 ```
 
-1. 编辑 `skills/my-skill/SKILL.md`：
-  - `name` 必须与目录名一致（小写、数字、连字符）
-  - `description` 写清 **做什么** 和 **何时使用**
-2. 在 `catalog.yaml` 中登记该 skill
-3. 按 [docs/install.md](docs/install.md) 安装到目标 Agent
+2. 编辑 `skills/my-skill/SKILL.md`：
+   - `name` 必须与目录名一致（小写、数字、连字符）
+   - `description` 写清 **做什么** 和 **何时使用**
+3. 本地挂载并测试：见 **[docs/local-dev.md](docs/local-dev.md)**（推荐软链接，改完即生效）
+4. 在 `catalog.yaml` 中登记该 skill，并推送到 GitHub
+5. 其他人（或你在别的机器上）按 **[docs/install.md](docs/install.md)** 从仓库安装，例如：  
+   `npx skills add yichong108/agent-skills --skill my-skill -a cursor`
 
-
-
-## 设计原则
-
-- **渐进披露**：启动时只加载 `name` + `description`；命中后再读 `SKILL.md`；`scripts/` / `references/` / `assets/` 按需加载
-- **精简主文件**：`SKILL.md` 建议 < 500 行，细节放到 `references/`
-- **相对路径、一层引用**：从 `SKILL.md` 直接链到资源文件，避免深层嵌套
-- **工具无关**：不写某家产品私有约定，优先遵循 [agentskills.io/specification](https://agentskills.io/specification)
-
-
+编写约定与设计原则见 **[docs/authoring-guide.md](docs/authoring-guide.md)**。
 
 ## 文档
 
 
-| 文档                                                 | 说明                  |
-| -------------------------------------------------- | ------------------- |
-| [docs/install.md](docs/install.md)                 | 安装、各 Agent 路径、移除与验证 |
-| [docs/authoring-guide.md](docs/authoring-guide.md) | 如何编写高质量 skill       |
-| [CONTRIBUTING.md](CONTRIBUTING.md)                 | 贡献流程                |
-
-
+| 文档                                                 | 说明                             |
+| -------------------------------------------------- | ------------------------------ |
+| [docs/install.md](docs/install.md)                 | **使用者**：从 GitHub 安装 / 移除 skill |
+| [docs/local-dev.md](docs/local-dev.md)             | **开发者**：本地改 skill 并挂载测试        |
+| [docs/authoring-guide.md](docs/authoring-guide.md) | 设计原则与编写约定 |
+| [CONTRIBUTING.md](CONTRIBUTING.md)                 | 贡献流程                           |
 
 
 ## 参考
