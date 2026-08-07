@@ -1,0 +1,15 @@
+# Agent Skills 目录索引
+# 每个 skill 对应 skills/<name>/SKILL.md
+# 规范: https://agentskills.io/specification
+
+version: 1
+name: agent-skills
+description: 跨 Agent 通用的 Skills 仓库
+
+skills:
+  - name: hello-world
+    path: skills/hello-world
+    description: 演示符合 Agent Skills 规范的最小 skill 结构与渐进披露写法。
+    tags:
+      - example
+      - starter
