@@ -167,13 +167,3 @@ rm ~/.cursor/skills/my-skill          # macOS / Linux（软链或目录）
 
 这只影响本机 Agent 挂载，不会删除仓库里的 `skills/my-skill/`。
 
-## 常见问题
-
-**Windows 创建 SymbolicLink 失败？**  
-开启系统「开发人员模式」，或改用 `Copy-Item` / `npx skills add ... --copy`。
-
-**Skill 一直不触发？**  
-先 `/my-skill` 显式调用确认能加载；再加强 `description` 里的触发词。简单到 Agent 不必求助 skill 的请求，可能不会自动选用。
-
-**测的是项目级还是全局？**  
-项目级只在对应仓库生效；全局在所有项目生效。开发时常用全局软链，发布给团队则写清安装命令即可。

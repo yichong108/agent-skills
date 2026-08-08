@@ -27,15 +27,30 @@ npx skills add yichong108/agent-skills --skill hello-world -a cursor -g
 cp -r templates/skill-template skills/my-skill
 ```
 
-2. 编辑 `skills/my-skill/SKILL.md`：
-   - `name` 必须与目录名一致（小写、数字、连字符）
-   - `description` 写清 **做什么** 和 **何时使用**
-3. 本地挂载并测试：见 **[docs/local-dev.md](docs/local-dev.md)**（推荐软链接，改完即生效）
-4. 在 `catalog.yaml` 中登记该 skill，并推送到 GitHub
-5. 其他人（或你在别的机器上）按 **[docs/install.md](docs/install.md)** 从仓库安装，例如：  
-   `npx skills add yichong108/agent-skills --skill my-skill -a cursor`
+1. 编辑 `skills/my-skill/SKILL.md`：
+  - `name` 必须与目录名一致（小写、数字、连字符）
+  - `description` 写清 **做什么** 和 **何时使用**
+2. 本地挂载并测试：见 **[docs/local-dev.md](docs/local-dev.md)**（推荐软链接，改完即生效）
+3. 在 `catalog.yaml` 中登记该 skill，并推送到 GitHub
+4. 其他人（或你在别的机器上）按 **[docs/install.md](docs/install.md)** 从仓库安装，例如：
+  `npx skills add yichong108/agent-skills --skill my-skill -a cursor`
 
 编写约定与设计原则见 **[docs/authoring-guide.md](docs/authoring-guide.md)**。
+
+
+
+## 常见问题
+
+**Windows 创建 SymbolicLink 失败？**  
+开启系统「开发人员模式」，或改用 `Copy-Item` / `npx skills add ... --copy`。
+
+**Skill 一直不触发？**  
+先 `/my-skill` 显式调用确认能加载；再加强 `description` 里的触发词。简单到 Agent 不必求助 skill 的请求，可能不会自动选用。
+
+**测的是项目级还是全局？**  
+项目级只在对应仓库生效；全局在所有项目生效。开发时常用全局软链，发布给团队则写清安装命令即可。
+
+
 
 ## 文档
 
@@ -44,8 +59,10 @@ cp -r templates/skill-template skills/my-skill
 | -------------------------------------------------- | ------------------------------ |
 | [docs/install.md](docs/install.md)                 | **使用者**：从 GitHub 安装 / 移除 skill |
 | [docs/local-dev.md](docs/local-dev.md)             | **开发者**：本地改 skill 并挂载测试        |
-| [docs/authoring-guide.md](docs/authoring-guide.md) | 设计原则与编写约定 |
+| [docs/authoring-guide.md](docs/authoring-guide.md) | 设计原则与编写约定                      |
 | [CONTRIBUTING.md](CONTRIBUTING.md)                 | 贡献流程                           |
+
+
 
 
 ## 参考
