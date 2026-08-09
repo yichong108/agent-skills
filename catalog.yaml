@@ -13,8 +13,8 @@ skills:
     tags:
       - example
       - starter
-  - name: stake
-    path: skills/stake
+  - name: choice
+    path: skills/choice
     description: 在涉及利害关系的决策中先逐个探询再列方案得失与分级坑点，帮助用户看清如何选择。
     tags:
       - decision
