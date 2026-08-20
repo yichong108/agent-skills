@@ -20,3 +20,11 @@ skills:
       - decision
       - risk
       - tradeoff
+  - name: concept
+    path: skills/concept
+    description: 按背景起源、解决问题、定义多维解释、各方立场与利弊，帮助用户深入理解任意概念。
+    tags:
+      - concept
+      - understanding
+      - explanation
+      - stakeholders
