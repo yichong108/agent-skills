@@ -28,3 +28,10 @@ skills:
       - understanding
       - explanation
       - stakeholders
+  - name: mowen-write
+    path: skills/mowen-write
+    description: 根据一点感想，按刘墨闻暖文风格生成短随笔或短故事。
+    tags:
+      - writing
+      - style
+      - essay
