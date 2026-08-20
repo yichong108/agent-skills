@@ -35,3 +35,11 @@ skills:
       - writing
       - style
       - essay
+  - name: booklet
+    path: skills/booklet
+    description: 用刘墨闻风格维护多章节连贯散文小册子；改完自动 commit，问答后回写。
+    tags:
+      - booklet
+      - writing
+      - mowen
+      - prose
